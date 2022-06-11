@@ -14,8 +14,8 @@
 document.addEventListener("DOMContentLoaded", ()=>{
 
    const tracker = new HandTracker({
-        onLeftHandRaised: ()=>console.log("left hand raised"),// replace with your funtion
-        onRightHandRaised: ()=>console.log("right hand raised"),// replace with your funtion
+        onLeftHandRaised: ()=>console.log("left hand raised"),// replace with your function
+        onRightHandRaised: ()=>console.log("right hand raised"),// replace with your function
         webcamIsVisible: true
     });
 k
