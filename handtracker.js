@@ -49,7 +49,6 @@ class HandTracker {
 
             const poses = await detector.estimatePoses(webcam);    
 
-            // console.log(poses)
                 if (poses.length!=0){
                     let keypoints = poses[0].keypoints;
                     onDetection(keypoints);
@@ -95,13 +94,13 @@ async function startWebCam(video) {
        await navigator.mediaDevices.getUserMedia({ 
             video: { width: 1280, height: 720, facingMode: "user" }
          })
-          .then(function (stream) {
+          .then( (stream)=> {
             video.srcObject = stream;
-            video.onloadedmetadata = function(e) {
+            video.onloadedmetadata = (e)=> {
                 video.play();
               };
           })
-          .catch(function (error) {
+          .catch( (error)=> {
             console.log(error);
           });
       }
