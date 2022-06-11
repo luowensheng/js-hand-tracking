@@ -30,17 +30,20 @@ const RIGHT_ANKLE_INDEX = 16
 
 class HandTracker {
 
-    constructor({ onRightHandRaised=null, onLeftHandRaised=null}){
+    constructor({ onRightHandRaised=null, onLeftHandRaised=null, webcamIsVisible=false}){
       
         this.onRightHandRaised= (onRightHandRaised!=null)?onRightHandRaised:()=>console.log("right hand Raised");
         this.onLeftHandRaised = (onLeftHandRaised!=null)?onLeftHandRaised:()=>console.log("left hand Raised");
-
+        this.webcamIsVisible = webcamIsVisible;
     }
 
 
     async run(){
 
             const webcam = await createWebcamElement();
+            if(!this.webcamIsVisible){
+                webcam.style.visibility = "hidden"
+            }
             const detectorConfig = {modelType: window.poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING};
             const detector = await window.poseDetection.createDetector(window.poseDetection.SupportedModels.MoveNet, detectorConfig);
             const onDetection = (keypoints) => this.onDetection(keypoints, this.onLeftHandRaised,this.onRightHandRaised);
